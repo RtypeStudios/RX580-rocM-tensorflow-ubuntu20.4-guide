@@ -6,7 +6,7 @@ This guide will show you how to set up your **clean Ubuntu 20.4.1 LTS** OS to be
 
 It is basically a resume of the [official guide by AMD](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html), and the [unofficial guide by Mathieu Poliquin](https://www.videogames.ai/Install-ROCM-Machine-Learning-AMD-GPU). I highly recommend to check those links, in order to understand what you are doing and why.
 
-There is another important thing to notice: **In this guide we downgrade ROCm to 3.5.1 since there are some bugs in posterior versions which have not been fixed yet, *not at all*** (bugs: [1](https://github.com/RadeonOpenCompute/ROCm/issues/1269), [2](https://github.com/RadeonOpenCompute/ROCm/issues/1265)). In the case you have a newer version already installed, you will need to remove it first.
+There is another important thing to notice: **In this guide we downgrade ROCm to 3.10 since there are some bugs in posterior versions which have not been fixed yet, *not at all*** (bugs: [1](https://github.com/RadeonOpenCompute/ROCm/issues/1269), [2](https://github.com/RadeonOpenCompute/ROCm/issues/1265)). In the case you have a newer version already installed, you will need to remove it first.
 
 Lets get started!
 ## Remove ROCm (you can skip this step if you don't have ROCm installed)
@@ -17,11 +17,10 @@ Lets get started!
 4. Reboot the system
 
 P.S. It's preferrable to do a fresh Ubuntu reinstall instead of removing ROCm - strange bugs may occur.
-## Install ROCm 3.5.1
+## Install ROCm 3.10
 ```
 sudo apt update
-sudo apt dist-upgrade
-sudo apt install libnuma-dev
+sudo apt install linux-image-5.6.0-1056-oem linux-headers-5.6.0-1056-oem libnuma-dev
 sudo reboot
 ```
 - These commands also upgrade the kernel. Unfortunately, ROCm needs specific kernel to run on (5.4.0-42-generic). To downgrade your kernel:
@@ -31,8 +30,8 @@ sudo reboot
 
 Add the repo and install rocm-dkms:
 ```
-wget -q -O - http://repo.radeon.com/rocm/apt/3.5.1/rocm.gpg.key | sudo apt-key add -
-echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/3.5.1/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
+wget -q -O - https://repo.radeon.com/rocm/rocm.gpg.key | sudo apt-key add -
+echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/3.10/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
 sudo apt update
 sudo apt install rocm-dkms && sudo reboot
 ```
@@ -58,7 +57,7 @@ You are half the way now!
 ```
 sudo apt install python3 python3-pip
 sudo apt install rocm-libs miopen-hip
-pip3 install -Iv tensorflow-rocm==2.2.0
+pip3 install -Iv tensorflow-rocm==2.4.0
 sudo apt install rccl
 sudo apt install libtinfo5
 sudo reboot
