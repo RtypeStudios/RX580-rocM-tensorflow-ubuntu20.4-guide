@@ -57,7 +57,7 @@ You are half the way now!
 ```
 sudo apt install python3 python3-pip
 sudo apt install rocm-libs miopen-hip
-pip3 install -Iv tensorflow-rocm==2.4.0
+pip3 install -Iv tensorflow-rocm==2.4.0rc3
 sudo apt install rccl
 sudo apt install libtinfo5
 sudo reboot
