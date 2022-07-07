@@ -23,10 +23,10 @@ sudo apt update
 sudo apt install linux-image-5.6.0-1056-oem linux-headers-5.6.0-1056-oem libnuma-dev
 sudo reboot
 ```
-- These commands also upgrade the kernel. Unfortunately, ROCm needs specific kernel to run on (5.4.0-42-generic). To downgrade your kernel:
-  1. Reboot the computer. In GRUB menu select "Additional options for Ubuntu" and select "Boot with kernel 5.4.0-42-generic (This is the default one Ubuntu 20.04 LTS is shipped with). Also memorize all the other kernel versions from the entries of that menu (5.8.0 by the time of writing this article)
-  1. Remove the newer kernels: ``` sudo apt-get purge *5.8.0* ``` (and/or any other versions except for the 5.4.0-42-generic)
-  1. Reboot and check your kernel version with ```uname -r``` (it should be 5.4.0-42-generic)
+- These commands also upgrade the kernel. Unfortunately, ROCm needs specific kernel to run on (5.6.0-1056-oem). To downgrade your kernel:
+  1. Reboot the computer. In GRUB menu select "Additional options for Ubuntu" and select "Boot with kernel 5.6.0-1056-oem (This is the default one Ubuntu 20.04 LTS is shipped with). Also memorize all the other kernel versions from the entries of that menu (5.8.0 by the time of writing this article)
+  1. Remove the newer kernels: ``` sudo apt-get purge *5.8.0* ``` (and/or any other versions except for the 5.6.0-1056-oem)
+  1. Reboot and check your kernel version with ```uname -r``` (it should be 5.6.0-1056-oem)
 
 Add the repo and install rocm-dkms:
 ```
